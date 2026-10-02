@@ -15,3 +15,5 @@ for row in cursor.fetchall():
     print(f"- {row[0]}, адрес: {row[1]}, рейтинг: {row[2]}")
 
 conn.close()
+
+# Тестовое изменение для Pull Request
