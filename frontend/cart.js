@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = '';
 
 function renderCart() {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -6,7 +6,6 @@ function renderCart() {
     const totalEl = document.getElementById('cart-total');
     const checkoutBtn = document.getElementById('checkout-btn');
     
-    // Если корзина пуста
     if (cart.length === 0) {
         container.innerHTML = '<p style="text-align:center; color: #6D4C41; margin-top: 20px;">Корзина пуста</p>';
         if (totalEl) totalEl.style.display = 'none';
@@ -14,7 +13,6 @@ function renderCart() {
         return;
     }
     
-    // Если есть товары
     container.innerHTML = '';
     let total = 0;
     
@@ -78,5 +76,4 @@ async function checkout() {
     }
 }
 
-// Запускаем отрисовку при загрузке страницы
 renderCart();

@@ -1,8 +1,10 @@
-venv/
-env/
-.venv/
-__pycache__/
-*.pyc
 .env
-.vscode/
-.idea/
+certs/
+*.pem
+*.key
+
+mssql_data/
+
+__pycache__/
+venv/
+.venv/

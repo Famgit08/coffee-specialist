@@ -51,7 +51,6 @@ def create_order(order: OrderCreate):
     conn = get_connection()
     cursor = conn.cursor()
     
-    # Считаем итоговую сумму
     total = 0
     for item in order.items:
         cursor.execute("SELECT price FROM products WHERE id = ?", item.product_id)
@@ -59,7 +58,6 @@ def create_order(order: OrderCreate):
         if row:
             total += float(row[0]) * item.quantity
     
-    # Создаём заказ
     cursor.execute("""
         INSERT INTO orders (user_id, coffee_shop_id, status_id, total_price)
         OUTPUT INSERTED.id
@@ -68,7 +66,6 @@ def create_order(order: OrderCreate):
     
     order_id = cursor.fetchone()[0]
     
-    # Добавляем товары в заказ
     for item in order.items:
         cursor.execute("""
             INSERT INTO order_items (order_id, product_id, quantity, price)

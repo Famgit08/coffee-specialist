@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = '';
 
 async function loadCoffeeShops() {
     try {
@@ -13,8 +13,14 @@ async function loadCoffeeShops() {
             card.className = 'card';
             card.innerHTML = `
                 <h3>${shop.name}</h3>
-                <p class="address">📍 ${shop.address}</p>
-                <p class="rating">⭐ ${shop.rating}</p>
+                <p class="address">
+                    <img src="images/location.png" alt="Coffee Specialist" style="height: 16px"/>
+                    ${shop.address}
+                </p>
+                <p class="rating">
+                    <img src="images/star.png" alt="Coffee Specialist" style="height: 16px"/>
+                    ${shop.rating}
+                </p>
             `;
             container.appendChild(card);
         });
