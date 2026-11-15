@@ -10,15 +10,18 @@ async function loadCoffeeShops() {
         
         shops.forEach(shop => {
             const card = document.createElement('div');
-            card.className = 'card';
+            // Белая карточка, скругление, отступы, тень
+            card.className = 'bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow';
+            
+            // Внутреннее содержимое с классами Tailwind
             card.innerHTML = `
-                <h3>${shop.name}</h3>
-                <p class="address">
-                    <img src="images/location.png" alt="Coffee Specialist" style="height: 16px"/>
+                <h3 class="text-lg font-bold text-stone-800 mb-2">${shop.name}</h3>
+                <p class="text-sm text-stone-600 flex items-center gap-1 mb-1">
+                    <img src="images/location.png" alt="Адрес" class="h-4 w-4">
                     ${shop.address}
                 </p>
-                <p class="rating">
-                    <img src="images/star.png" alt="Coffee Specialist" style="height: 16px"/>
+                <p class="text-sm font-bold text-amber-500 flex items-center gap-1">
+                    <img src="images/star.png" alt="Рейтинг" class="h-4 w-4">
                     ${shop.rating}
                 </p>
             `;
@@ -26,8 +29,10 @@ async function loadCoffeeShops() {
         });
     } catch (error) {
         console.error('Ошибка загрузки:', error);
-        document.getElementById('coffee-shops').innerHTML = 
-            '<p style="color: red;">Не удалось загрузить данные. Убедитесь, что бэкенд запущен.</p>';
+        document.getElementById('coffee-shops').innerHTML = `
+            <p class="text-center text-red-500 mt-4 font-medium">
+                Не удалось загрузить данные. Убедитесь, что бэкенд запущен.
+            </p>`;
     }
 }
 

@@ -6,40 +6,33 @@
     <title>Корзина — Coffee Specialist</title>
     <meta name="description" content="Ваша корзина заказов в Coffee Specialist. Проверьте состав заказа и оформите доставку.">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="images/coffee.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
-            Coffee Specialist</div>
-        <a href="profile.html" class="profile-icon">
-            <img src="images/user.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
+<body class="bg-orange-50 min-h-screen pb-20">
+
+    <header class="bg-coffee text-white px-5 py-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
+        <div class="text-xl font-bold flex items-center gap-2">
+            <img src="images/coffee.png" alt="Coffee Specialist" class="h-6 w-6 filter brightness-0 invert">
+            Coffee Specialist
+        </div>
+        <a href="auth.html" class="hover:opacity-80 transition">
+            <img src="images/user.png" alt="Профиль" class="h-6 w-6 filter brightness-0 invert">
         </a>
     </header>
 
-    <main>
-        <h1>Корзина</h1>
-        <div id="cart-items">
-
-        </div>
-        <div id="cart-total" class="total-box" style="display: none;"></div>
-        <button id="checkout-btn" class="btn" style="width: 100%; display: none; margin-top: 15px;" onclick="checkout()">Оформить заказ</button>
+    <main class="max-w-2xl mx-auto p-4 mt-4">
+        <h1 class="text-2xl font-bold text-stone-800 mb-4">Корзина</h1>
+        <div id="cart-items" class="space-y-3"></div>
+        <div id="cart-total" class="bg-stone-200 rounded-xl p-4 mt-6 text-center text-lg font-bold text-stone-800" style="display: none;"></div>
+        <button id="checkout-btn" onclick="checkout()" class="w-full bg-coffee text-white font-bold py-3 rounded-lg mt-4 hover:opacity-90 transition shadow-md" style="display: none;">Оформить заказ</button>
     </main>
 
-    <nav class="bottom-nav">
-        <a href="index.html" id="nav-home">
-            <img src="images/home.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
-        </a>
-        <a href="menu.html" id="nav-menu">
-            <img src="images/menu.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
-        </a>
-        <a href="cart.html" id="nav-cart" class="active">
-            <img src="images/cart.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
-        </a>
-        <a href="profile.html" id="nav-profile">
-            <img src="images/user.png" alt="Coffee Specialist" style="height: 24px; margin-right: 8px;">
-        </a>
+    <nav class="fixed bottom-0 left-0 w-full bg-coffee flex justify-around py-3 z-50 shadow-lg">
+        <a href="index.html" class="opacity-60 hover:opacity-100 transition"><img src="images/home.png" class="h-6 w-6 filter brightness-0 invert"></a>
+        <a href="menu.html" class="opacity-60 hover:opacity-100 transition"><img src="images/menu.png" class="h-6 w-6 filter brightness-0 invert"></a>
+        <a href="cart.html" class="opacity-100"><img src="images/cart.png" class="h-6 w-6 filter brightness-0 invert"></a>
+        <a href="profile.html" class="opacity-60 hover:opacity-100 transition"><img src="images/user.png" class="h-6 w-6 filter brightness-0 invert"></a>
     </nav>
 
     <script src="cart.js"></script>
