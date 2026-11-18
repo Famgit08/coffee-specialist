@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import get_connection
 from pydantic import BaseModel
 from typing import List
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -100,3 +102,47 @@ def get_products():
             "category": row[4]
         })
     return result
+
+
+
+
+
+
+class UserAuth(BaseModel):
+    username: str
+    password: str
+
+@app.post("/api/register")
+def register(user: UserAuth):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT id FROM users WHERE username = ?", user.username)
+    if cursor.fetchone():
+        conn.close()
+        raise HTTPException(status_code=400, detail="Пользователь с таким логином уже существует")
+    
+    cursor.execute(
+        "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
+        user.username, f"{user.username}@example.com", user.password
+    )
+    conn.commit()
+    conn.close()
+    return {"message": "Пользователь успешно зарегистрирован"}
+
+@app.post("/api/login")
+def login(user: UserAuth):
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute(
+        "SELECT id, username FROM users WHERE username = ? AND password_hash = ?",
+        user.username, user.password
+    )
+    row = cursor.fetchone()
+    conn.close()
+    
+    if row:
+        return {"message": "Успешный вход", "user_id": row[0], "username": row[1]}
+    else:
+        raise HTTPException(status_code=401, detail="Неверный логин или пароль")

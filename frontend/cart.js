@@ -25,7 +25,7 @@ function renderCart() {
                 <h3 class="font-bold text-[#3E2723] text-lg mb-1">${item.name}</h3>
                 <p class="text-sm text-[#6D4C41]">${item.quantity} шт. × ${item.price} ₽</p>
             </div>
-            <button onclick="removeFromCart(${item.id})" class="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600 transition font-bold">×</button>
+            <button onclick="removeFromCart(${item.id})" class="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-600 transition font-bold">✕</button>
         `;
         container.appendChild(div);
     });
