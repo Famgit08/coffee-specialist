@@ -1,20 +1,16 @@
 services:
   backend:
-    build: ../backend
+    build: ../coffee_specialist/backend
     environment:
-      - FIREBASE_CREDENTIALS_PATH=/run/secrets/firebase_key
-      - DB_SERVER=db,1433
-      - DB_NAME=Coffee Specialist DB
-      - DB_USER=sa
-      - DB_PASSWORD=YourStrong!Passw0rd
-    secrets:
-      - firebase_key
+      - FIREBASE_CREDENTIALS_PATH=/app/firebase-key.json  # <-- Путь внутри контейнера
+    volumes:
+      - ../coffee_specialist/backend/firebase-key.json:/app/firebase-key.json:ro  # <-- Пробрасываем файл
     depends_on:
       - db
     restart: unless-stopped
 
   frontend:
-    build: ../frontend
+    build: ../coffee_specialist/frontend
     depends_on:
       - backend
     restart: unless-stopped
@@ -23,7 +19,7 @@ services:
     image: nginx:alpine
     ports:
       - "8080:80"
-      - "8443:443"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs:/etc/nginx/certs:ro
