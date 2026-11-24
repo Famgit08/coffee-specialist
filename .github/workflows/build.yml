@@ -13,5 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t coffee-specialist .
+      - name: Build Backend Docker image
+        run: docker build -t coffee-specialist-backend ./backend
+
+      - name: Build Frontend Docker image
+        run: docker build -t coffee-specialist-frontend ./frontend
